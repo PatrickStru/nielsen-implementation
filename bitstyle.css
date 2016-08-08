@@ -1,0 +1,60 @@
+.bitmovin {
+    width: 100%;
+    height: 60px;
+    background-image: url(https://app.bitmovin.com/assets/img/logo-new-blue-2.png);
+    background-size: 98%;
+}
+
+.header {
+    background: #2eabe2;
+    width: 50%;
+    height: 100px;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 5px 5px;
+    display: flex;
+    align-items: center;
+}
+
+h2 {
+    color: #ffffff;
+    font-size: 1.4em;
+    font-weight: bold;
+    font-family: "Arial";
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.info {
+    top: 0;
+    left: 15px;
+    width: 20%;
+    padding: 10px;
+    position: fixed;
+}
+
+.info-text {
+    font-size: 1.0em;
+    font-family: "Arial";
+    color: darkslategray;
+}
+
+.links {
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.0em;
+    font-family: "Arial";
+    list-style-type: none;
+}
+
+.links li {
+    padding: 5px;
+}
+
+#player {
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}

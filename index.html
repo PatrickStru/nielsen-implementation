@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bitmovin PLayer</title>
+    <link rel="stylesheet" type="text/css" href="bitstyle.css">
+    <!-- IMPORTANT: necessary to use the bitmovin player api -->
+    <script type="text/javascript" src="http://secure-dcr-cert.imrworldwide.com/novms/js/2/ggcmb510.js"></script>
+    <script type="text/javascript" src="https://bitmovin-a.akamaihd.net/bitmovin-player/staging/5.1.0-rc1/bitdash.min.js"></script>
+    <script type="text/javascript" src="bitmovin-nielsen.js"></script>
+    <!-- IMPORTANT: necessary to use the nielsen sdk -->
+
+
+    <!--<script type="text/javascript" src="bitmovin-nielsen.js"></script>-->
+</head>
+<body>
+<div class="header">
+    <h2>Welcome to your first Bitmovin Stream with Nielsen Implementation</h2>
+</div>
+
+<div class="info">
+    <div class="bitmovin"></div>
+    <p class="info-text">If this is your first use of our Bitmovin Player you might be interested to have a look at some helpful documentation.</p>
+    <ul class="links">
+        <li><a href="https://bitmovin.com/player-documentation/player-configuration/">Player Configuration</a></li>
+        <li><a href="https://bitmovin.com/player-documentation/player-api/">Player API</a></li>
+        <!--<li><a href="http://docs.mux.io/">Nielsen Documentation</a></li>-->
+    </ul>
+</div>
+
+<div id="player">
+
+</div>
+<script type="text/javascript">
+    (function() {
+        /* This is just an example config object of the player */
+        /* Please view the player configuration API under https://bitmovin.com/player-documentation/player-configuration/ */
+        var conf = {
+            key: "b22f6885-dd8b-4f28-a157-62b8fc8712b5", /* Your bitmovin player key goes here !!! */
+            source: {
+                dash: "",//"//bitdash-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd",
+                hls: "http://www.nielseninternet.com/NielsenConsumer/prog_index.m3u8",//"//bitdash-a.akamaihd.net/content/MI201109210084_1/m3u8s/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.m3u8",
+                progressive: "//bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4",
+                poster: "//bitdash-a.akamaihd.net/content/MI201109210084_1/poster.jpg"
+            },
+            style: {
+                width: '100%',
+                aspectratio: '16:9',
+                controls: true
+            },
+            playback: {
+                preferredTech : [
+                    {
+                        player: 'html5',
+                        streaming: 'hls'
+                    }, {
+                        player: 'flash',
+                        streaming: 'dash'
+                    }
+                ]
+            }
+        };
+
+        /* Initialize global params for nielsen sdk */
+        var _nolggGlobalParams =
+        {
+            sfcode: "dcr-cert",
+            apid: "T908BCA18-3C3F-470B-9859-07DD9EB03FF8",
+            apn: "bitmovin-test",
+            nsdkv: "511",   //Nielsen SDK Version currently being used.
+            nol_sdkdebug: "console" //Enables Debug Mode which allows output to be viewed in console.
+        };
+
+        var nSdkInstance = NOLCMB.getInstance();
+        nSdkInstance.ggInitialize(_nolggGlobalParams);
+
+        var playerId = "player";
+        var player = bitdash(playerId);
+
+        player.setup(conf);
+        nielsenAnalytics(player, nSdkInstance);
+
+        /* Enable static page measurement */
+        nSdkInstance.ggPM('staticStart',{type: "static", assetid: "bitmovin-static", assetName: "Bitmovin-Asset", section: "sitesection", segA: "Segment1", segB: "Segment2", segC: "Segment3"});
+    })();
+</script>
+</body>
+</html>
