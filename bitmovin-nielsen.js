@@ -55,15 +55,17 @@ function nielsenAnalytics(player, nSdkInstance)
         var index = 0;
         for (; index < data.metadata.frames.length; index++)
         {
-            /* Parsing of nielsen stream not needed here */
+            var ID3tag = data.metadata.frames[0].owner;
+            if (ID3tag.includes('www.nielsen.com')) {
 
-            /* Just sending founded ID3 data to nielsen server */
-            nSdkInstance.ggPM(nEvent.ID3, data.metadata.frames[0].owner);
+                nSdkInstance.ggPM(nEvent.ID3, ID3tag);
+                console.log("Sending: " + ID3tag);
+            }
         }
-
     });
 
     /* Ads werden vorübergehend nicht behandelt, da API calls zur Durchführung noch nicht bereitgestellt sind
+
      player.addEventHandler(bitdash.EVENT.ON_AD_STARTED, function(data) {
 
      ad_type = checkAdType(ad_type);
