@@ -71,7 +71,8 @@
             nol_sdkdebug: "console" //Enables Debug Mode which allows output to be viewed in console.
         };
 
-        var nSdkInstance = NOLCMB.getInstance();
+        var nSdkInstance = NOLCMB.getInstance("bitmovin");
+        console.log("Instance: " + JSON.stringify(nSdkInstance));
         nSdkInstance.ggInitialize(_nolggGlobalParams);
 
         var playerId = "player";
