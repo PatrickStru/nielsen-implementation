@@ -3,10 +3,10 @@
  */
 
 var nEvent = {
-    PLAY:       "5",
-    ID3:        "55",
-    END:        "57",
-    METADATA:  "3"
+    PLAY:       "play",
+    ID3:        "sendID3",
+    END:        "end",
+    METADATA:   "loadMetadata"
 };
 
 function nielsenAnalytics(player, nSdkInstance)
@@ -15,25 +15,23 @@ function nielsenAnalytics(player, nSdkInstance)
 
     var metadataObject =
     {
-        "type": "content",                      // leave value 'content' here -> important!
-        "length": player.getDuration(),         // (required)
-        "title": "Bitmovin Content",            // should be provided by the customer (required)
-        "program": "Bitmovin Adaptive Stream",  // should be provided by the customer (required)
-        "assetid": "4",                         // should be provided by the customer (required)
-        "segB": "segmentB",                     // should be provided by the customer (required)
-        "segC": "segmentC",                     // should be provided by the customer (required)
-        "isfullepisode":"Y",                    // should be provided by the customer (required)
-        "airdate": getCurrentDate(),            // (required)
-        "adloadtype": "2"                       // should be provided by the customer (“1” – Linear “2” – Dynamic) (required)
+        type:           "content",
+        adModel:        "1",
+        channelName:    "Bitmovin-Channel"
     };
 
     var metadataPlay = {
-        "channelName": "Bitmovin-Channel" //e.g. ESPN2, Food Network, etc.
+        channelName: "Bitmovin-Channel" //e.g. ESPN2, Food Network, etc.
     };
+
+    /* If initial video or a new video is loaded then change nielsen metadata object */
+    player.addEventHandler(bitdash.EVENT.ON_SOURCE_LOADED, function(data) {
+
+        nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
+    });
 
     player.addEventHandler(bitdash.EVENT.ON_PLAY, function(data) {
 
-        nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
         nSdkInstance.ggPM(nEvent.PLAY, metadataPlay);
     });
 
@@ -60,7 +58,7 @@ function nielsenAnalytics(player, nSdkInstance)
 function sendPlayHead(player, nEvent, nSdkInstance) {
 
     if (player.isLive()) {
-        nSdkInstance.ggPM(nEvent, (Date.now()/1000));
+        nSdkInstance.ggPM(nEvent, (Date.now() / 1000));
     }
     else {
         nSdkInstance.ggPM(nEvent, parseInt(player.getCurrentTime()));
