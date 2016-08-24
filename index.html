@@ -8,10 +8,6 @@
     <script type="text/javascript" src="http://secure-dcr-cert.imrworldwide.com/novms/js/2/ggcmb510.js"></script>
     <script type="text/javascript" src="https://bitmovin-a.akamaihd.net/bitmovin-player/staging/5.1.0-rc1/bitdash.min.js"></script>
     <script type="text/javascript" src="bitmovin-nielsen.js"></script>
-    <!-- IMPORTANT: necessary to use the nielsen sdk -->
-
-
-    <!--<script type="text/javascript" src="bitmovin-nielsen.js"></script>-->
 </head>
 <body>
 <div class="header">
@@ -24,12 +20,13 @@
     <ul class="links">
         <li><a href="https://bitmovin.com/player-documentation/player-configuration/">Player Configuration</a></li>
         <li><a href="https://bitmovin.com/player-documentation/player-api/">Player API</a></li>
-        <!--<li><a href="http://docs.mux.io/">Nielsen Documentation</a></li>-->
     </ul>
 </div>
 
 <div id="player">
-
+    <p class="info-text"><b>Note:</b> Our properties may feature Nielsen proprietary measurement software, which will allow you to contribute to market research, such as Nielsen TV Ratings.
+        To learn more about the information that Nielsen software may collect and your choices with regard to it,
+        refer to Nielsen Digital Measurement Privacy Policy at <a href="http://www.nielsen.com/digitalprivacy">www.nielsen.com/digitalprivacy</a>.
 </div>
 <script type="text/javascript">
     (function() {
@@ -72,8 +69,8 @@
         };
 
         var nSdkInstance = NOLCMB.getInstance("bitmovin");
-        console.log("Instance: " + JSON.stringify(nSdkInstance));
         nSdkInstance.ggInitialize(_nolggGlobalParams);
+        console.log("Opt out: " + nSdkInstance.getOptOutStatus());
 
         var playerId = "player";
         var player = bitdash(playerId);
