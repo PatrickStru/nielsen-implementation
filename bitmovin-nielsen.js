@@ -6,39 +6,46 @@ var interval;
 var ad_type;
 
 var nEvent = {
-    PLAY:       "5",
-    ID3:        "55",
-    END:        "57",
-    METADATA:  "3"
+    PLAY:       "play",
+    ID3:        "sendID3",
+    END:        "end",
+    METADATA:   "loadMetadata"
 };
 
 function nielsenAnalytics(player, nSdkInstance)
 {
-    var ID3 = [];
     var nielsen_string = "www.nielsen.com";
 
     var metadataObject =
     {
-        "type": "content",                      // leave value 'content' here -> important!
-        "length": player.getDuration(),         // (required)
-        "title": "Bitmovin Content",            // should be provided by the customer (required)
-        "program": "Bitmovin Adaptive Stream",  // should be provided by the customer (required)
-        "assetid": "4",                         // should be provided by the customer (required)
-        "segB": "segmentB",                     // should be provided by the customer (required)
-        "segC": "segmentC",                     // should be provided by the customer (required)
-        "isfullepisode":"Y",                    // should be provided by the customer (required)
-        "airdate": getCurrentDate(),            // (required)
-        "adloadtype": "2"                       // should be provided by the customer (“1” – Linear “2” – Dynamic) (required)
+        type:           "content",
+        adModel:        "1",
+        channelName:    "Bitmovin-Channel"
     };
 
     var metadataPlay = {
         "channelName": "Bitmovin-Channel" //e.g. ESPN2, Food Network, etc.
     };
 
+    player.addEventHandler(bitdash.EVENT.ON_SOURCE_LOADED, function(data) {
+
+        var offset;
+        var linear;
+        var channel;
+        // Check if new source is an Ad
+        if (data.adConfig != undefined) {
+            offset = data.adConfig.offsetType;
+            linear = data.adConfig.creativeType;
+            channel = data.adConfig.clientType;
+            console.log(data.adConfig);
+        }
+        //nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
+    });
+
     player.addEventHandler(bitdash.EVENT.ON_PLAY, function(data) {
 
-        nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
-        nSdkInstance.ggPM(nEvent.PLAY, metadataPlay);
+        console.log(JSON.stringify(data));
+        //nSdkInstance.ggPM(nEvent.PLAY, metadataPlay);
 
         /* not needed anymore due to DTVR package */
         //interval = setInterval(function() { sendPlayHead(player, nEvent.PLAYHEAD, nSdkInstance); }, 1000);
@@ -56,43 +63,44 @@ function nielsenAnalytics(player, nSdkInstance)
         for (; index < data.metadata.frames.length; index++)
         {
             var ID3tag = data.metadata.frames[0].owner;
-            if (ID3tag.includes('www.nielsen.com')) {
+            if (ID3tag.includes(nielsen_string)) {
 
-                nSdkInstance.ggPM(nEvent.ID3, ID3tag);
+                //nSdkInstance.ggPM(nEvent.ID3, ID3tag);
                 console.log("Sending: " + ID3tag);
             }
         }
     });
 
-    /* Ads werden vorübergehend nicht behandelt, da API calls zur Durchführung noch nicht bereitgestellt sind
+     // Ads werden vorübergehend nicht behandelt, da API calls zur Durchführung noch nicht bereitgestellt sind
 
      player.addEventHandler(bitdash.EVENT.ON_AD_STARTED, function(data) {
 
-     ad_type = checkAdType(ad_type);
+         console.log(JSON.stringify(data));
 
-     var adMetadataObject = {
-     "type": "preroll",
-     "length": player.getDuration(),
-     "assetid": "pre",
-     "adModel": "2",                 // should be provided by the customer
-     "tv": "true",                   // should be provided by the customer
-     "dataSrc": "cms"
-     };
-     sendPlayHead(player, nEvent.STOP, nSdkInstance);
-     nSdkInstance.ggPM(nEvent.METADATA, adMetadataObject);
-
+         var adMetadataObject = {
+         "type": "preroll",
+         "length": player.getDuration(),
+         "assetid": "pre",
+         "adModel": "2",                 // should be provided by the customer
+         "tv": "true",                   // should be provided by the customer
+         "dataSrc": "cms"
+         };
+         //sendPlayHead(player, nEvent.STOP, nSdkInstance);
+         //nSdkInstance.ggPM(nEvent.METADATA, adMetadataObject);
      });
 
-     player.addEventHandler(bitdash.EVENT.ON_AD_FINISHED, function(data) {
+    player.addEventHandler(bitdash.EVENT.ON_AD_FINISHED, function(data) {
 
-     //clearInterval(interval);
-     sendPlayHead(player, nEvent.STOP, nSdkInstance);
-     nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
-     }); */
+        console.log(JSON.stringify(data));
+        //clearInterval(interval);
+        //sendPlayHead(player, nEvent.STOP, nSdkInstance);
+        //nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
+    });
 
     player.addEventHandler(bitdash.EVENT.ON_PLAYBACK_FINISHED, function(data) {
 
-        sendPlayHead(player, nEvent.END, nSdkInstance);
+        console.log(JSON.stringify(data));
+        //sendPlayHead(player, nEvent.END, nSdkInstance);
     });
 }
 
@@ -128,17 +136,3 @@ function getCurrentDate() {
     }
     return data;
 }
-
-/*
- function checkAdType(type) {
-
- if (type == "") {
- return "preroll";
- }
- else if (type == "preroll") {
- return "midroll";
- }
- else {
- return "postroll";
- }
- } */
