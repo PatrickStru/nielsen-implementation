@@ -3,6 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="8db1c471-05cf-4807-8631-2bd8976764bd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bitmovin-nielsen.js" afterPath="$PROJECT_DIR$/bitmovin-nielsen.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
     </list>
     <ignored path="nielsen-implementation.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -26,8 +28,8 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="782">
-              <caret line="70" column="65" selection-start-line="70" selection-start-column="65" selection-end-line="70" selection-end-column="65" />
+            <state relative-caret-position="468">
+              <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -36,13 +38,11 @@
       <file leaf-file-name="bitmovin-nielsen.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/bitmovin-nielsen.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+            <state relative-caret-position="-135">
+              <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
               <folding>
                 <element signature="e#0#46#0" expanded="false" />
-                <element signature="e#1770#1877#0" expanded="false" />
-                <element signature="e#2299#3167#0" expanded="false" />
-                <element signature="e#4478#4642#0" expanded="false" />
+                <element signature="e#1426#1533#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -58,8 +58,8 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/bitmovin-nielsen.js" />
         <option value="$PROJECT_DIR$/index.html" />
+        <option value="$PROJECT_DIR$/bitmovin-nielsen.js" />
       </list>
     </option>
   </component>
@@ -193,7 +193,7 @@
       <workItem from="1470658611557" duration="111000" />
       <workItem from="1470931842992" duration="112000" />
       <workItem from="1472027522622" duration="2579000" />
-      <workItem from="1472124973857" duration="168000" />
+      <workItem from="1472124973857" duration="4993000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1470658651165</created>
@@ -220,7 +220,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3034000" />
+    <option name="totallyTimeSpent" value="7859000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1592" y="-8" width="1936" height="1176" extended-state="6" />
@@ -262,7 +262,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="Refactoring due to DTVR package instead of DCR package." />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="1" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
@@ -280,9 +282,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
-            <element signature="e#1770#1877#0" expanded="false" />
-            <element signature="e#2299#3167#0" expanded="false" />
-            <element signature="e#4478#4642#0" expanded="false" />
+            <element signature="e#1426#1533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -293,9 +293,7 @@
           <caret line="141" column="5" selection-start-line="141" selection-start-column="5" selection-end-line="141" selection-end-column="5" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
-            <element signature="e#1770#1877#0" expanded="false" />
-            <element signature="e#2299#3167#0" expanded="false" />
-            <element signature="e#4478#4642#0" expanded="false" />
+            <element signature="e#1426#1533#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -314,30 +312,26 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
-            <element signature="e#1770#1877#0" expanded="false" />
-            <element signature="e#2299#3167#0" expanded="false" />
-            <element signature="e#4478#4642#0" expanded="false" />
+            <element signature="e#1426#1533#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="70" column="65" selection-start-line="70" selection-start-column="65" selection-end-line="70" selection-end-column="65" />
+        <state relative-caret-position="468">
+          <caret line="46" column="39" selection-start-line="46" selection-start-column="39" selection-end-line="46" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bitmovin-nielsen.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="33" column="24" selection-start-line="33" selection-start-column="24" selection-end-line="33" selection-end-column="24" />
+        <state relative-caret-position="-135">
+          <caret line="38" column="47" selection-start-line="38" selection-start-column="47" selection-end-line="38" selection-end-column="47" />
           <folding>
             <element signature="e#0#46#0" expanded="false" />
-            <element signature="e#1770#1877#0" expanded="false" />
-            <element signature="e#2299#3167#0" expanded="false" />
-            <element signature="e#4478#4642#0" expanded="false" />
+            <element signature="e#1426#1533#0" expanded="false" />
           </folding>
         </state>
       </provider>
