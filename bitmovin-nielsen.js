@@ -39,6 +39,9 @@ function nielsenAnalytics(player, nSdkInstance)
             channel = data.adConfig.clientType;
             console.log(data.adConfig);
         }
+        else {
+            console.log(data);
+        }
         //nSdkInstance.ggPM(nEvent.METADATA, metadataObject);
     });
 
